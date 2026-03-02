@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+            
+            
+            <!-- <bean id="emp" name="employee" class="com.hunt.Employee" >
+              <constructor-arg>
+                        <value>12</value>
+              </constructor-arg>
+              <constructor-arg>
+                        <value>raju</value>
+               </constructor-arg>
+            </bean>  -->
+            
+           <!--  <bean id="emp" name="employee" class="com.hunt.Employee" >
+           
+            </bean>  -->
+            
+            <!-- <bean id="emp" name="employee" class="com.hunt.Employee" >
+              <property name="id">
+                   <value>12</value> 
+              </property>
+              <property name="name">
+                <value>ranga</value>   here, error, because String value must be enclosed under double quotes
+               <value>"ranga"</value>
+              </property>
+              
+            </bean>  -->
+            
+            <bean id="emp" name="employee" class="com.hunt.Employee" >
+              <property name="id">
+                   <value>12</value> <!-- we can give only the literals in value tag -->
+              </property>
+              <property name="name">
+               <!--  <value>ranga</value> -->   <!-- here, error, because String value must be enclosed under double quotes -->
+               <value>"ranga"</value>
+              </property>
+              
+            </bean> 
+            
+            
+            
+            
+            
+     
+</beans>
