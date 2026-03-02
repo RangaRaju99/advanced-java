@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<bean id="addr" class="com.hunt.Address"></bean>
+	
+	<!-- spring supports only 2 types of injections in XML ==> setter and constructor injection, field injection is not supported -->
+
+	<bean id="emp" name="employee" class="com.hunt.Employee"
+		lazy-init="true">
+
+		<!-- <property name="id" value="120124"/> =====> Spring internally: setId(120124); -->
+		<!-- <property name="id" value="Ranga"/> =====> Spring internally: setId("Ranga"); -->
+
+		<!-- 👉 XML rule: All attribute values must be in quotes 👉 Tag content 
+			is automatically treated as text 👉 No quotes needed -->
+
+		<!-- <value>"Rishith"</value>  =====   Spring injects: 
+		                  			      					name = "\"Rishith\"" 
+		                  			      					Output: "Rishith" ⚠ Quotes become part of the string. -->
+
+
+		<property name="id" value="120124" />    <!-- 1st way -->
+		
+		<property name="name">
+			<value>Rishith</value>     			<!-- 2nd way -->
+		<!-- Spring always reads values as String first, then converts to int, double, String, boolean... ===>  No manual casting needed. -->
+		</property>
+		
+		<property name="salary" value="2000.00">
+		</property>  							   <!-- 3rd way -->
+		
+		<property name="expr">
+		   <value><![CDATA[1<2 && 3>1]]></value>   <!-- 4th way -->
+		</property>
+		
+		<property name="result">
+		   <value> #{200+5.0}</value>              <!-- 5th way  -->
+		</property>
+
+		<property name="address" ref="addr" />   <!-- To inject the another bean here  -->    <!-- 6th way -->
+		
+		<property name="address">
+		     <bean class="com.hunt.Department"></bean>     <!-- another way to inject another bean here -->
+		</property>
+
+		<property name="jobs">
+			<list>
+				<value>SDE</value>
+				<value>Testing</value>
+				<value>Software Engnieer</value>
+			    <value>SDE</value>
+			</list>
+		</property>
+
+		<property name="projects">
+			<set>
+				<value>portfolio</value>
+				<value>portfolio</value>   <!-- duplicate allowed, but not add in set-->
+				<value>management system</value>
+				<value>recommendation system</value>
+			</set>
+
+		</property>
+
+		<property name="projectRatings">
+			<map>
+				<entry key="movie" value="10"></entry>  
+				<entry key="joke" value="5" />
+				
+				<entry key="song">   <!-- is text, Spring converts it automatically to Integer because your map type is:
+				      										Map<String, Integer>  -->
+				<value>20</value>  <!-- Yes. It is equivalent to the attribute style entry.
+   												Nested value form is used when the value is complex or not a simple literal.  -->
+				 </entry>
+				 
+			</map>
+
+		</property>
+		
+		<!-- XML normally does not allow special symbols inside text: < > & " -->
+		<!--  CDATA means:  “Treat this as plain text, not XML.” 
+		     <![CDATA[  your text here  ]]>   === syntax 
+		     CDATA is used to include special characters in XML without escaping them. -->
+		     
+		     
+		<!--  SpEL = Spring Expression Language   It allows you to:
+                                                   do calculations
+                                                   call methods
+                                                   access properties
+                                                   create objects
+                                                   use conditions
+                                                   inside XML configuration 
+                                                   
+            syntax  ====  SpEL always written as:   #{ expression }    
+                  
+   Note:  ✔ CDATA
+                   Used to store special characters in XML without escaping.
+          ✔ SpEL
+                   Spring Expression Language allows dynamic values in XML configuration.        
+                  
+                  -->
+
+	</bean>
+
+
+
+
+
+</beans>
