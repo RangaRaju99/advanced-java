@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+            
+            <!-- id should be unique, class must be fully-qualified class name -->
+            <bean id="emp" name="employee,emp;emplo Employee" class="com.hunt.Employee" scope="prototype" lazy-init="true">
+            <!-- we can give multiple names.
+                 names can be separated with comma, semi-colon, space
+                 we can give same bean name to both id and name -->
+            </bean> 
+            <!-- id should be unique for each bean, name also must be present in one bean, not more than one bean -->
+            <bean id="Emp" name="EMployee,Emp;Emplo EMPloyee" class="com.hunt.Employee" lazy-init="true">
+           
+            </bean> 
+            
+            
+            
+            
+     
+</beans>
